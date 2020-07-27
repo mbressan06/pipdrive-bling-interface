@@ -1,0 +1,26 @@
+{
+  "name": "pipedrive-bling-interface",
+  "version": "1.0.0",
+  "description": "An interface App that sends the Pipedrive archived leads and place as  Bling new order",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mbressan06/pipdrive-bling-interface.git"
+  },
+  "keywords": [
+    "pipedrive",
+    "bling",
+    "interface",
+    "api",
+    "restful"
+  ],
+  "author": "Marcelo Bressan",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/mbressan06/pipdrive-bling-interface/issues"
+  },
+  "homepage": "https://github.com/mbressan06/pipdrive-bling-interface#readme"
+}
