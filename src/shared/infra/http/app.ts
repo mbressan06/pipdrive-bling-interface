@@ -4,11 +4,21 @@ import 'dotenv/config';
 import express from 'express';
 
 import cors from 'cors';
-
 import 'express-async-errors';
+
+import * as Sentry from '@sentry/node';
+
+import sentryConfig from '@config/sentry';
+
+import TokenExpiredError from '@shared/errors/TokenExpiredError';
+
 import routes from './api/v1';
 
 const app = express();
+
+Sentry.init({ dsn: sentryConfig.dsn });
+
+app.use(Sentry.Handlers.requestHandler());
 
 app.use(express.json());
 app.use(
@@ -17,6 +27,8 @@ app.use(
   }),
 );
 app.use(routes);
+
+app.use(Sentry.Handlers.errorHandler());
 
 app.use(
   (
@@ -27,6 +39,13 @@ app.use(
   ) => {
     if (process.env.NODE_ENV !== 'production') {
       console.log(err.stack);
+    }
+
+    if (err instanceof TokenExpiredError) {
+      return res.status(401).json({
+        code: 'token.expired',
+        message: err.message,
+      });
     }
 
     return res.status(500).json({ error: 'Internal server error' });
