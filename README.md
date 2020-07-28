@@ -13,4 +13,3 @@
 - Criar endpoint para trazer os dados consolidados da collection do MongoDB.
 
 ## How to use
-
