@@ -8,6 +8,7 @@ yarn-error.log
 
 # Jest
 coverage
+globalConfig.json
 
 # Dist
 dist/

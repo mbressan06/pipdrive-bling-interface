@@ -1,12 +1,15 @@
 import express from 'express';
 
+import { container } from 'tsyringe';
+
+import DealsSearchService from '@modules/services/DealsSearchService';
+
 const dealRouter = express.Router();
 
 dealRouter.get('/', async (req, res) => {
-  // res.header('X-Total-Count', String(totalCount));
-  // res.header('X-Total-Page', String(Math.ceil(totalCount / per_page)));
-
-  return res.json('messages');
+  const searchDeals = container.resolve(DealsSearchService);
+  const deals = await searchDeals.execute();
+  return res.json(deals);
 });
 
 dealRouter.get('/:id', async (req, res) => {
